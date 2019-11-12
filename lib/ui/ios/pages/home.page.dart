@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:loja_bloc_provider/blocs/home.bloc.dart';
 import 'package:loja_bloc_provider/ui/shared/widgets/category/category-list.widget.dart';
@@ -9,8 +10,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final HomeBloc bloc = Provider.of<HomeBloc>(context);
 
-    return Scaffold(
-      body: Padding(
+    return CupertinoPageScaffold(
+      child: Padding(
         padding: EdgeInsets.all(10),
         child: ListView(
           children: <Widget>[

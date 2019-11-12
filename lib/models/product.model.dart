@@ -25,13 +25,12 @@ class ProductModel {
 
   ProductModel.fromJson(Map<String, dynamic> json) {
     brand = json['brand'];
-    category = json['category'] != null
-        ? new CategoryModel.fromJson(json['category'])
-        : null;
+    if (json['category'] != null)
+      category = new CategoryModel.fromJson(json['category']);
     description = json['description'];
     id = json['id'];
     image = json['image'];
-    images = json['images'];
+    if (json['images'] != null) images = json['images'].cast<String>();
     price = json['price'];
     tag = json['tag'];
     title = json['title'];

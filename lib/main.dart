@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:loja_bloc_provider/blocs/cart.bloc.dart';
 import 'package:loja_bloc_provider/blocs/home.bloc.dart';
-import 'package:loja_bloc_provider/ui/android/pages/home.page.dart';
+import 'package:loja_bloc_provider/blocs/theme.bloc.dart';
+import 'package:loja_bloc_provider/blocs/user.bloc.dart';
+import 'package:loja_bloc_provider/ui/android/pages/tabs.page.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(App());
@@ -13,6 +16,15 @@ class App extends StatelessWidget {
         ChangeNotifierProvider<HomeBloc>.value(
           value: HomeBloc(),
         ),
+        ChangeNotifierProvider<CartBloc>.value(
+          value: CartBloc(),
+        ),
+        ChangeNotifierProvider<UserBloc>.value(
+          value: UserBloc(),
+        ),
+        ChangeNotifierProvider<ThemeBloc>.value(
+          value: ThemeBloc(),
+        ),
       ],
       child: Main(),
     );
@@ -22,13 +34,15 @@ class App extends StatelessWidget {
 class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final ThemeBloc bloc = Provider.of<ThemeBloc>(context);
     return MaterialApp(
       title: 'Loja',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+      theme: bloc.theme,
+      home: DefaultTabController(
+        length: 3,
+        child: TabsPage(),
       ),
-      home: HomePage(),
     );
   }
 }
